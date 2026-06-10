@@ -1,4 +1,5 @@
 import { Hero } from "@/components/sections/Hero";
+import { About } from "@/components/sections/About";
 import { Section } from "@/components/sections/Section";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -15,9 +16,7 @@ export default function Home() {
     <main className="flex flex-1 flex-col">
       <Hero />
 
-      <Section id="about" eyebrow="01 — Hakkımda" title="Hakkımda">
-        <ComingSoon>Yakında: kısa biyografim, ilgi alanlarım ve hikâyem.</ComingSoon>
-      </Section>
+      <About />
 
       <Section id="projects" eyebrow="02 — Projeler" title="Projeler">
         <ComingSoon>
