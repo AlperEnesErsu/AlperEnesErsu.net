@@ -5,24 +5,26 @@ export type Certificate = {
   date: string;
   /** Sıralama için ISO tarih */
   iso: string;
-  /** public/ altındaki PDF yolu */
+  /** Önizleme görseli (public/ altında) */
+  image: string;
+  /** Orijinal PDF (public/ altında) */
   file: string;
   /** Varsa doğrulama linki */
   url?: string;
 };
 
 /**
- * Sertifikalar — en yeni en üstte. PDF'ler `public/certificates/` altında.
- *
- * ⚠️ TODO: Anthropic Education'daki iki sertifikanın KESİN kurs adını ekle
- * (PDF görsel tabanlı olduğu için başlık metinden okunamadı).
+ * Sertifikalar — en yeni en üstte.
+ * Görseller + PDF'ler `public/certificates/` altında.
+ * (Görseller PDF'lerden üretildi: scripts ile pymupdf.)
  */
 export const certificates: Certificate[] = [
   {
-    title: "Anthropic Education Sertifikası",
-    issuer: "Anthropic Education",
+    title: "Claude Code 101",
+    issuer: "Anthropic",
     date: "27 Nisan 2026",
     iso: "2026-04-27",
+    image: "/certificates/anthropic-education-2.jpg",
     file: "/certificates/anthropic-education-2.pdf",
   },
   {
@@ -30,6 +32,7 @@ export const certificates: Certificate[] = [
     issuer: "BTK Akademi",
     date: "26 Nisan 2026",
     iso: "2026-04-26",
+    image: "/certificates/bilgisayar-aglarina-giris-btk.jpg",
     file: "/certificates/bilgisayar-aglarina-giris-btk.pdf",
   },
   {
@@ -37,6 +40,7 @@ export const certificates: Certificate[] = [
     issuer: "BTK Akademi",
     date: "26 Nisan 2026",
     iso: "2026-04-26",
+    image: "/certificates/etkili-iletisim-stratejileri-btk.jpg",
     file: "/certificates/etkili-iletisim-stratejileri-btk.pdf",
   },
   {
@@ -44,6 +48,7 @@ export const certificates: Certificate[] = [
     issuer: "BTK Akademi",
     date: "18 Nisan 2026",
     iso: "2026-04-18",
+    image: "/certificates/anthropic-claude-btk.jpg",
     file: "/certificates/anthropic-claude-btk.pdf",
   },
   {
@@ -51,6 +56,7 @@ export const certificates: Certificate[] = [
     issuer: "BTK Akademi",
     date: "18 Nisan 2026",
     iso: "2026-04-18",
+    image: "/certificates/ag-temelleri-btk.jpg",
     file: "/certificates/ag-temelleri-btk.pdf",
   },
   {
@@ -58,6 +64,7 @@ export const certificates: Certificate[] = [
     issuer: "BTK Akademi",
     date: "18 Nisan 2026",
     iso: "2026-04-18",
+    image: "/certificates/iletisim-network-yonetimi-btk.jpg",
     file: "/certificates/iletisim-network-yonetimi-btk.pdf",
   },
   {
@@ -65,14 +72,16 @@ export const certificates: Certificate[] = [
     issuer: "Patika.dev",
     date: "8 Nisan 2026",
     iso: "2026-04-08",
+    image: "/certificates/patika-java101.jpg",
     file: "/certificates/patika-java101.pdf",
     url: "https://academy.patika.dev/certificates/NroKxICs",
   },
   {
-    title: "Anthropic Education Sertifikası",
-    issuer: "Anthropic Education",
+    title: "AI Fluency: Framework & Foundations",
+    issuer: "Anthropic",
     date: "25 Mart 2026",
     iso: "2026-03-25",
+    image: "/certificates/anthropic-education-1.jpg",
     file: "/certificates/anthropic-education-1.pdf",
   },
 ];
