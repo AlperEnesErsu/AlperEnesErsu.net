@@ -1,5 +1,6 @@
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
+import { Projects } from "@/components/sections/Projects";
 import { Certificates } from "@/components/sections/Certificates";
 import { Section } from "@/components/sections/Section";
 import { Reveal } from "@/components/motion/Reveal";
@@ -19,12 +20,7 @@ export default function Home() {
 
       <About />
 
-      <Section id="projects" eyebrow="02 — Projeler" title="Projeler">
-        <ComingSoon>
-          Yakında: geliştirdiğim projeler, canlı önizleme ve kullandığım
-          teknolojiler.
-        </ComingSoon>
-      </Section>
+      <Projects />
 
       <Certificates />
 
