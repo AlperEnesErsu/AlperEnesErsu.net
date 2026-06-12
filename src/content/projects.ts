@@ -1,4 +1,9 @@
-export type ProjectStatus = "demo-soon" | "open-source" | "private";
+export type ProjectStatus =
+  | "demo-soon"
+  | "open-source"
+  | "private"
+  | "in-dev"
+  | "concept";
 
 export type Project = {
   slug: string;
@@ -44,7 +49,7 @@ export const projects: Project[] = [
       "Topladıklarını özetleyip sınıflandırıyor ve kullanıcıya günlük bir “bilgi özeti” olarak sunuyor. Auth, RBAC, i18n (TR/EN) ve denetim kaydı içeren kendi Flask çekirdeğimin üzerine inşa ettim.",
     ],
     tech: ["Python", "Flask 3", "SQLAlchemy 2", "Alembic", "pytest", "Flask-Babel"],
-    // TODO: ekran görüntüsü — ScrapeMind lokalde Postgres (Docker) istiyor
+    image: "/projects/scrapemind.png",
     repo: "AlperEnesErsu/ScrapeMind",
     github: "https://github.com/AlperEnesErsu/ScrapeMind",
     status: "open-source",
@@ -64,6 +69,31 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: "sezai-mobile",
+    title: "SezAI Mobile",
+    tagline: "SezAI'nin React Native mobil uygulaması",
+    description: [
+      "SezAI'yi tarlada en çok kullanılacağı yere, telefona taşıyorum: fotoğraf çek, teşhisi ve ilaç önerisini cebinden al. Expo ile geliştiriliyor; yeni özellikler eklendikçe burası da güncellenecek.",
+    ],
+    tech: ["React Native", "Expo", "TypeScript"],
+    image: "/projects/sezai-mobile.png",
+    status: "in-dev",
+    featured: false,
+    platforms: ["Mobil"],
+  },
+  {
+    slug: "aloah",
+    title: "Aloah.co",
+    tagline: "Yaşlılar, gezginler ve esnafı buluşturan AI destekli yerel keşif fikri",
+    description: [
+      "Yaşlıların telefon rehberinden tek dokunuşla yakınındaki güvenilir esnafa ulaşması, şehre yeni gelenlerin çevreye hızla adapte olması ve küçük esnafın komisyonsuz görünürlük kazanması için tasarladığım uygulama konsepti. Şimdilik fikir aşamasında.",
+    ],
+    tech: ["Ürün tasarımı", "Yapay zekâ"],
+    image: "/projects/aloah.jpg",
+    status: "concept",
+    featured: false,
+  },
+  {
     slug: "aisigner",
     title: "AISigner",
     tagline: "Stajyer–mentör eşleştirme ve AI destekli öğrenme yol haritası",
@@ -71,6 +101,7 @@ export const projects: Project[] = [
       "Öğrencileri kısa bir anketle analiz edip uygun mentörle eşleştiren, ardından AI ile kişisel öğrenme yol haritası üreten açık kaynak platform. Katkıda bulunduğum bir takım projesi.",
     ],
     tech: ["React", "TypeScript", "Docker", "PostgreSQL"],
+    image: "/projects/aisigner.png",
     github: "https://github.com/AlperEnesErsu/AISigner",
     status: "open-source",
     featured: false,
@@ -83,6 +114,7 @@ export const projects: Project[] = [
       "Tasarımı eskimiş siteleri ele alıp daha modern ve kullanışlı arayüzlerle yeniden tasarladığım deneme serisi. İlk konuk: KitapYurdu.",
     ],
     tech: ["React", "UI/UX"],
+    image: "/projects/kitapyurdu.png",
     repo: "AlperEnesErsu/Web-Design",
     github: "https://github.com/AlperEnesErsu/Web-Design",
     status: "open-source",
@@ -96,6 +128,7 @@ export const projects: Project[] = [
       "Şu an gezdiğin site. Günlük PR'larla, her gün bir bölüm ekleyerek geliştiriyorum; yakında Claude destekli “Yapay Alper” sohbet asistanı eklenecek.",
     ],
     tech: ["Next.js 16", "TypeScript", "Tailwind v4", "Motion", "Claude API"],
+    image: "/projects/site.png",
     repo: "AlperEnesErsu/AlperEnesErsu.net",
     github: "https://github.com/AlperEnesErsu/AlperEnesErsu.net",
     status: "open-source",
