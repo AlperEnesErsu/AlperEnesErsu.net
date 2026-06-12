@@ -7,6 +7,8 @@ const statusLabel: Record<ProjectStatus, string> = {
   "demo-soon": "Canlı demo yakında",
   "open-source": "Açık kaynak",
   private: "Özel proje",
+  "in-dev": "Geliştiriliyor",
+  concept: "Fikir aşaması",
 };
 
 function formatDate(iso: string) {
@@ -185,6 +187,20 @@ function ArchiveCard({
 }) {
   const inner = (
     <>
+      {project.image && (
+        <div className="relative -mx-5 -mt-5 mb-4 aspect-video overflow-hidden rounded-t-2xl border-b border-border bg-white/[0.02]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={project.image}
+            alt={`${project.title} görseli`}
+            loading="lazy"
+            className="h-full w-full object-cover object-top"
+          />
+          <span className="absolute right-3 top-3 rounded-full bg-background/80 px-2.5 py-1 text-xs text-muted backdrop-blur">
+            {statusLabel[project.status]}
+          </span>
+        </div>
+      )}
       <div className="flex items-center justify-between gap-3">
         <h4 className="font-display text-base font-semibold text-foreground">
           {project.title}
@@ -211,7 +227,7 @@ function ArchiveCard({
   );
 
   const className =
-    "flex h-full flex-col rounded-2xl border border-border bg-surface/50 p-5 transition-colors hover:border-accent/40 hover:bg-surface";
+    "flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface/50 p-5 transition-colors hover:border-accent/40 hover:bg-surface";
 
   return project.github ? (
     <a href={project.github} target="_blank" rel="noopener noreferrer" className={className}>
