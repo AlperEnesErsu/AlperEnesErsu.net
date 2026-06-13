@@ -2,6 +2,7 @@ import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Projects } from "@/components/sections/Projects";
 import { Certificates } from "@/components/sections/Certificates";
+import { Chat } from "@/components/sections/Chat";
 import { Section } from "@/components/sections/Section";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -30,11 +31,7 @@ export default function Home() {
         </ComingSoon>
       </Section>
 
-      <Section id="chat" eyebrow="05 — Yapay Alper" title="Yapay Alper">
-        <ComingSoon>
-          Yakında: bakış açımı yansıtan yapay zeka sohbet asistanı.
-        </ComingSoon>
-      </Section>
+      <Chat />
     </main>
   );
 }
