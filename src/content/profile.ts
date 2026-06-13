@@ -44,7 +44,14 @@ export const profile = {
 
   social: {
     github: "https://github.com/AlperEnesErsu",
-    // linkedin: "https://www.linkedin.com/in/...",
-    // email: "alperenesersu@gmail.com",
+    /** ⚠️ LinkedIn URL'n otomatik bulunamadı — profilini buraya yapıştır, kart otomatik görünür. */
+    linkedin: "",
+    /** Herkese açık iletişim e-postası (GitHub profilinde de açık). */
+    email: "alperenesersu.b@gmail.com",
+    /** ⚠️ Herkese açık sitede görünür — istemezsen "" yap. */
+    phone: "0553 414 0325",
+    /** tel: ve wa.me için: ülke kodu + numara, başında + veya 0 olmadan. */
+    phoneIntl: "905534140325",
+    location: "Ankara, Türkiye",
   },
 } as const;
