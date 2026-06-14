@@ -55,6 +55,16 @@ function LinkedInIcon() {
     </svg>
   );
 }
+function CvIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" {...stroke} aria-hidden>
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <path d="M14 2v6h6" />
+      <path d="M12 18v-6" />
+      <path d="m9 15 3 3 3-3" />
+    </svg>
+  );
+}
 function MapPinIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" {...stroke} aria-hidden>
@@ -118,6 +128,14 @@ function buildMethods(): Method[] {
       href: s.linkedin,
       external: true,
       icon: <LinkedInIcon />,
+    });
+  if (profile.cv)
+    methods.push({
+      label: "Özgeçmiş",
+      value: "CV'yi indir (PDF)",
+      href: profile.cv,
+      external: true,
+      icon: <CvIcon />,
     });
   if (s.location)
     methods.push({
