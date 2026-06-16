@@ -32,6 +32,10 @@ npm run dev   # http://localhost:3000
 
 Proje, sınav dönemim boyunca günlük küçük PR'larla geliştiriliyor (6–17 Haziran). Her PR sitenin somut bir parçasını ekliyor.
 
+## Lisans
+
+Bu proje [MIT Lisansı](LICENSE) ile açık kaynaktır.
+
 ---
 
-© Alper Enes Ersü
+© 2026 Alper Enes Ersü
