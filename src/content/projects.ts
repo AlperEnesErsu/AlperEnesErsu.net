@@ -90,7 +90,7 @@ export const projects: Project[] = [
       "Takımla iteratif geliştirme döngülerinde çalıştım.",
     ],
     tech: ["Flutter", "Dart", "Firebase"],
-    image: "/projects/aloah.jpg",
+    image: "/projects/aloah.png",
     status: "in-dev",
     featured: false,
     platforms: ["Mobil"],
