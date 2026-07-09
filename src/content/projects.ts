@@ -100,7 +100,7 @@ export const projects: Project[] = [
     title: "AISigner",
     tagline: "Öğrenci–mentör eşleştirme ve öğrenme yol haritası platformu",
     description: [
-      "POSINOWA'daki 6 aylık uzaktan deneyimim sırasında takımla geliştirdiğim full-stack platform. Öğrencileri mentörlerle eşleştiriyor; rol bazlı paneller (Admin / Mentör / Öğrenci), NextAuth ile kimlik doğrulama ve çok adımlı öğrenci kayıt akışı içeriyor. Prisma + PostgreSQL, Docker Compose ile dağıtım — 66+ commit katkım var.",
+      "POSINOWA'da sürmekte olan stajım sırasında takımla geliştirdiğim full-stack platform. Öğrencileri mentörlerle eşleştiriyor; rol bazlı paneller (Admin / Mentör / Öğrenci), NextAuth ile kimlik doğrulama ve çok adımlı öğrenci kayıt akışı içeriyor. Prisma + PostgreSQL, Docker Compose ile dağıtım — 66+ commit katkım var.",
     ],
     tech: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Prisma", "Docker"],
     image: "/projects/aisigner.png",

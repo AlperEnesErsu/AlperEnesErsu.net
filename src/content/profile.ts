@@ -22,7 +22,7 @@ export const profile = {
     /** Bio paragrafları (istediğin kadar ekle/çıkar) */
     paragraphs: [
       "Türk Hava Kurumu Üniversitesi'nde (Ankara) ikinci sınıf Bilgisayar Mühendisliği öğrencisiyim. Java, Python, Flutter ve modern web teknolojileriyle gerçek projeler geliştiriyor, staj fırsatları arıyorum.",
-      "POSINOWA'da 6 ay süren uzaktan, staj benzeri bir yazılım geliştirme deneyimim oldu; burada takımla AISigner adlı full-stack mentörlük platformunu (Next.js + PostgreSQL + Prisma) geliştirdim.",
+      "Şu anda POSINOWA'da uzaktan, sürmekte olan bir yazılım geliştirme stajım var (8. ayında); burada takımla AISigner adlı full-stack mentörlük platformunu (Next.js + PostgreSQL + Prisma) geliştiriyorum. Bahar döneminde de üniversitemin zorunlu (YÖK) stajını yapacağım.",
       "Web (Next.js / React / Node.js) ve mobil (Flutter) tarafında çalışıyorum. Bir problemi tasarımdan koda kadar uçtan uca çözmek beni heyecanlandırıyor; sürekli yeni şeyler öğrenip kendimi geliştiriyorum.",
     ],
 
