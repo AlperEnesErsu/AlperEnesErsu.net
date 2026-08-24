@@ -16,7 +16,7 @@ function setLast(msgs: Msg[], content: string): Msg[] {
 
 function Avatar() {
   return (
-    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-strong text-[#08090c]">
+    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-strong text-on-accent">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
         <path d="M12 2l1.9 5.8L20 9.7l-5 3.6 1.9 5.9L12 15.6 6.1 19.2 8 13.3l-5-3.6 6.1-1.9z" />
       </svg>
@@ -82,7 +82,7 @@ export function ChatBox() {
   const showSuggestions = messages.length === 1 && !busy;
 
   return (
-    <div className="flex h-[32rem] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-border bg-surface/50">
+    <div className="flex h-[32rem] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-border bg-surface card-elevated">
       {/* Header */}
       <div className="flex items-center gap-3 border-b border-border bg-surface px-4 py-3">
         <Avatar />
@@ -166,7 +166,7 @@ export function ChatBox() {
           type="submit"
           disabled={busy || !input.trim()}
           aria-label="Gönder"
-          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent text-[#08090c] transition-colors hover:bg-accent/90 disabled:opacity-40"
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent text-on-accent transition-colors hover:bg-accent/90 disabled:opacity-40"
         >
           <svg
             width="18"

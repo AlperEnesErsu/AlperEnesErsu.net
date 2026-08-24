@@ -35,9 +35,9 @@ export function CertificateGrid() {
             <button
               type="button"
               onClick={() => setActive(cert)}
-              className="group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-border bg-surface/50 text-left transition-colors hover:border-accent/40 hover:bg-surface"
+              className="group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-border bg-surface card-elevated text-left transition-colors hover:border-accent/40 hover:bg-surface"
             >
-              <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-border bg-white/[0.02]">
+              <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-border bg-surface-2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={cert.image}
@@ -81,7 +81,7 @@ export function CertificateGrid() {
       <AnimatePresence>
         {active && (
           <motion.div
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm sm:p-6"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-[#141f3d]/50 p-4 backdrop-blur-sm sm:p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

@@ -110,7 +110,7 @@ function FeaturedProject({
     <Reveal>
       <article className="group grid items-center gap-8 md:grid-cols-2 md:gap-12">
         <div
-          className={`relative aspect-[16/10] overflow-hidden rounded-2xl border border-border bg-surface/50 ${
+          className={`relative aspect-[16/10] overflow-hidden rounded-2xl border border-border bg-surface card-elevated ${
             flip ? "md:order-2" : ""
           }`}
         >
@@ -206,10 +206,10 @@ function ArchiveCard({
     <button
       type="button"
       onClick={() => onSimulate(project)}
-      className="flex h-full w-full flex-col overflow-hidden rounded-2xl border border-border bg-surface/50 p-5 text-left transition-colors hover:border-accent/40 hover:bg-surface cursor-pointer group"
+      className="flex h-full w-full flex-col overflow-hidden rounded-2xl border border-border bg-surface card-elevated p-5 text-left transition-colors hover:border-accent/40 hover:bg-surface cursor-pointer group"
     >
       {project.image && (
-        <div className="relative -mx-5 -mt-5 mb-4 aspect-video overflow-hidden rounded-t-2xl border-b border-border bg-white/[0.02] w-[calc(100%+2.5rem)]">
+        <div className="relative -mx-5 -mt-5 mb-4 aspect-video overflow-hidden rounded-t-2xl border-b border-border bg-surface-2 w-[calc(100%+2.5rem)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={project.image}

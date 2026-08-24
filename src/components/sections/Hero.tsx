@@ -42,7 +42,7 @@ export function Hero() {
       >
         <motion.span
           variants={item}
-          className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-sm text-muted backdrop-blur"
+          className="inline-flex items-center gap-2 rounded-full border border-border bg-surface card-elevated px-4 py-1.5 text-sm text-muted backdrop-blur"
         >
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
@@ -81,7 +81,7 @@ export function Hero() {
         >
           <a
             href="#projects"
-            className="inline-flex h-12 items-center justify-center rounded-full bg-accent px-7 font-medium text-[#08090c] transition-colors hover:bg-accent/90"
+            className="inline-flex h-12 items-center justify-center rounded-full bg-accent px-7 font-medium text-on-accent transition-colors hover:bg-accent/90"
           >
             Projelerim
           </a>

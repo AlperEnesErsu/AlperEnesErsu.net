@@ -32,7 +32,7 @@ export function ProjectSimulator({ project, onClose }: ProjectSimulatorProps) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-100 flex items-center justify-center bg-black/85 p-4 backdrop-blur-md sm:p-6"
+      className="fixed inset-0 z-100 flex items-center justify-center bg-[#141f3d]/60 p-4 backdrop-blur-md sm:p-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -105,7 +105,7 @@ export function ProjectSimulator({ project, onClose }: ProjectSimulatorProps) {
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-9 items-center rounded-full bg-accent px-4 text-xs font-medium text-[#08090c] transition-colors hover:bg-accent/90"
+                className="inline-flex h-9 items-center rounded-full bg-accent px-4 text-xs font-medium text-on-accent transition-colors hover:bg-accent/90"
               >
                 Canlı Sürümü Aç
               </a>
@@ -116,9 +116,9 @@ export function ProjectSimulator({ project, onClose }: ProjectSimulatorProps) {
         {/* Simulator Column (Right on Desktop, Bottom on Mobile) */}
         <div className="flex flex-1 items-center justify-center bg-background/50 p-6 md:p-8 overflow-y-auto">
           {isMobile ? (
-            <PhoneFrame slug={project.slug} />
+            <PhoneFrame project={project} />
           ) : (
-            <BrowserFrame slug={project.slug} />
+            <BrowserFrame project={project} />
           )}
         </div>
       </motion.div>
@@ -129,9 +129,10 @@ export function ProjectSimulator({ project, onClose }: ProjectSimulatorProps) {
 /* ==========================================================================
    PHONE FRAME MOCKUP
    ========================================================================== */
-function PhoneFrame({ slug }: { slug: string }) {
+function PhoneFrame({ project }: { project: Project }) {
+  const slug = project.slug;
   return (
-    <div className="relative mx-auto h-[560px] w-[280px] shrink-0 rounded-[40px] border-[8px] border-[#232838] bg-[#0c0d12] shadow-2xl ring-1 ring-white/5">
+    <div className="device-dark relative mx-auto h-[560px] w-[280px] shrink-0 rounded-[40px] border-[8px] border-[#232838] bg-[#0c0d12] shadow-2xl ring-1 ring-white/5">
       {/* Speaker/Notch */}
       <div className="absolute top-2 left-1/2 z-20 h-4 w-28 -translate-x-1/2 rounded-full bg-[#232838] flex items-center justify-between px-3">
         <span className="h-1.5 w-1.5 rounded-full bg-[#0c0d12]" />
@@ -160,7 +161,7 @@ function PhoneFrame({ slug }: { slug: string }) {
           ) : slug === "aloah" ? (
             <AloahSimulator />
           ) : (
-            <GenericMobileSimulator title={slug} />
+            <GenericMobileSimulator project={project} />
           )}
         </div>
 
@@ -174,9 +175,10 @@ function PhoneFrame({ slug }: { slug: string }) {
 /* ==========================================================================
    BROWSER FRAME MOCKUP
    ========================================================================== */
-function BrowserFrame({ slug }: { slug: string }) {
+function BrowserFrame({ project }: { project: Project }) {
+  const slug = project.slug;
   return (
-    <div className="flex h-[480px] w-full max-w-2xl flex-col rounded-xl border border-border bg-[#0c0d12] shadow-2xl ring-1 ring-white/5">
+    <div className="device-dark flex h-[480px] w-full max-w-2xl flex-col rounded-xl border border-border bg-[#0c0d12] shadow-2xl ring-1 ring-white/5">
       {/* Browser Chrome Header */}
       <div className="flex items-center gap-3 border-b border-border bg-surface px-4 py-3">
         {/* MacOS Style Buttons */}
@@ -213,7 +215,7 @@ function BrowserFrame({ slug }: { slug: string }) {
         ) : slug === "aisigner" ? (
           <AiSignerSimulator />
         ) : (
-          <GenericBrowserSimulator title={slug} />
+          <GenericBrowserSimulator project={project} />
         )}
       </div>
     </div>
@@ -273,7 +275,7 @@ function SezAISimulator() {
   return (
     <div className="flex h-full flex-col font-sans">
       {/* Header */}
-      <div className="border-b border-border/40 bg-surface/40 px-3 py-2 flex items-center justify-between text-accent font-semibold">
+      <div className="border-b border-border/40 bg-surface-2 px-3 py-2 flex items-center justify-between text-accent font-semibold">
         <span className="flex items-center gap-1">🌿 SezAI</span>
         <span className="text-[10px] text-muted">v2.1-mobile</span>
       </div>
@@ -298,7 +300,7 @@ function SezAISimulator() {
                   <button
                     key={leaf.id}
                     onClick={() => handleSelectLeaf(leaf)}
-                    className="w-full rounded-xl border border-border bg-surface-2/40 p-2.5 text-left transition-all hover:border-accent/40 hover:bg-surface-2"
+                    className="w-full rounded-xl border border-border bg-surface-2 p-2.5 text-left transition-all hover:border-accent/40 hover:bg-surface-2"
                   >
                     <div className="flex items-center gap-2.5">
                       <div className="h-8 w-8 rounded-lg bg-accent/10 flex items-center justify-center text-accent text-sm">
@@ -315,7 +317,7 @@ function SezAISimulator() {
 
               <button
                 onClick={() => handleSelectLeaf(SEZAI_SAMPLES[0])}
-                className="w-full py-2 bg-accent text-[#08090c] font-semibold rounded-lg text-center mt-2 hover:bg-accent/90"
+                className="w-full py-2 bg-accent text-on-accent font-semibold rounded-lg text-center mt-2 hover:bg-accent/90"
               >
                 Kamerayı Aç (Simüle Et)
               </button>
@@ -368,7 +370,7 @@ function SezAISimulator() {
                 </div>
               </div>
 
-              <div className="bg-surface-2/30 border border-border/60 rounded-xl p-3 space-y-2">
+              <div className="bg-surface-2 border border-border/60 rounded-xl p-3 space-y-2">
                 <h6 className="font-semibold text-[10px] text-accent uppercase tracking-wider">İlaç & Mücadele Önerisi</h6>
                 <p className="text-[10px] leading-relaxed text-muted">{selectedLeaf.treatment}</p>
               </div>
@@ -376,13 +378,13 @@ function SezAISimulator() {
               <div className="grid grid-cols-2 gap-2 mt-auto pt-2">
                 <button
                   onClick={() => setStep("dealer")}
-                  className="py-1.5 bg-surface-2 border border-border text-foreground hover:bg-surface-2/80 rounded-lg text-center font-medium"
+                  className="py-1.5 bg-surface-2 border border-border text-foreground hover:bg-surface-2 rounded-lg text-center font-medium"
                 >
                   📍 Bayiler
                 </button>
                 <button
                   onClick={() => setStep("welcome")}
-                  className="py-1.5 bg-accent text-[#08090c] hover:bg-accent/90 rounded-lg text-center font-semibold"
+                  className="py-1.5 bg-accent text-on-accent hover:bg-accent/90 rounded-lg text-center font-semibold"
                 >
                   Yeni Teşhis
                 </button>
@@ -404,7 +406,7 @@ function SezAISimulator() {
 
                 <div className="space-y-2 max-h-[220px] overflow-y-auto pr-1">
                   {dealers.map((d, idx) => (
-                    <div key={idx} className="border border-border bg-surface-2/20 p-2.5 rounded-xl flex items-center justify-between">
+                    <div key={idx} className="border border-border bg-surface-2 p-2.5 rounded-xl flex items-center justify-between">
                       <div className="min-w-0">
                         <p className="font-semibold text-foreground text-xs">{d.name}</p>
                         <p className="text-[9px] text-muted">Mesafe: {d.dist} · Puan: ⭐ {d.rating}</p>
@@ -474,25 +476,25 @@ function ScrapeMindSimulator() {
   return (
     <div className="flex h-full font-sans text-xs">
       {/* Sidebar */}
-      <div className="w-1/3 border-r border-border/40 bg-surface/30 p-2.5 flex flex-col gap-2">
+      <div className="w-1/3 border-r border-border/40 bg-surface-2 p-2.5 flex flex-col gap-2">
         <div className="font-semibold text-accent mb-2 flex items-center gap-1 text-[10px]">
           🧠 ScrapeMind
         </div>
         <button
           onClick={() => { setCat("ai"); setSelectedArt(null); }}
-          className={`w-full p-2 text-left rounded-lg transition-colors ${cat === "ai" ? "bg-accent/15 text-accent border border-accent/20" : "bg-transparent text-muted hover:bg-surface-2/40"}`}
+          className={`w-full p-2 text-left rounded-lg transition-colors ${cat === "ai" ? "bg-accent/15 text-accent border border-accent/20" : "bg-transparent text-muted hover:bg-surface-2"}`}
         >
           🤖 Yapay Zeka
         </button>
         <button
           onClick={() => { setCat("bio"); setSelectedArt(null); }}
-          className={`w-full p-2 text-left rounded-lg transition-colors ${cat === "bio" ? "bg-accent/15 text-accent border border-accent/20" : "bg-transparent text-muted hover:bg-surface-2/40"}`}
+          className={`w-full p-2 text-left rounded-lg transition-colors ${cat === "bio" ? "bg-accent/15 text-accent border border-accent/20" : "bg-transparent text-muted hover:bg-surface-2"}`}
         >
           🔬 Biyoloji & Sağlık
         </button>
         <button
           onClick={() => { setCat("tech"); setSelectedArt(null); }}
-          className={`w-full p-2 text-left rounded-lg transition-colors ${cat === "tech" ? "bg-accent/15 text-accent border border-accent/20" : "bg-transparent text-muted hover:bg-surface-2/40"}`}
+          className={`w-full p-2 text-left rounded-lg transition-colors ${cat === "tech" ? "bg-accent/15 text-accent border border-accent/20" : "bg-transparent text-muted hover:bg-surface-2"}`}
         >
           💻 Teknoloji
         </button>
@@ -518,7 +520,7 @@ function ScrapeMindSimulator() {
                 <div
                   key={i}
                   onClick={() => setSelectedArt(art)}
-                  className="border border-border bg-surface-2/30 hover:border-accent/30 p-3 rounded-xl cursor-pointer transition-all space-y-1.5"
+                  className="border border-border bg-surface-2 hover:border-accent/30 p-3 rounded-xl cursor-pointer transition-all space-y-1.5"
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-[9px] bg-surface-2 px-1.5 py-0.5 rounded text-muted">{art.src}</span>
@@ -627,7 +629,7 @@ function FlowSimulator() {
   return (
     <div className="flex h-full flex-col font-sans text-xs">
       {/* Navigation tabs */}
-      <div className="flex border-b border-border/40 bg-surface/30">
+      <div className="flex border-b border-border/40 bg-surface-2">
         <button
           onClick={() => setActiveTab("todo")}
           className={`flex-1 py-2 text-center transition-colors font-medium border-b-2 ${activeTab === "todo" ? "border-accent text-accent bg-accent/5" : "border-transparent text-muted hover:text-foreground"}`}
@@ -686,9 +688,9 @@ function FlowSimulator() {
                   <div
                     key={todo.id}
                     onClick={() => toggleTodo(todo.id)}
-                    className="flex items-center gap-2.5 p-2 bg-surface-2/20 border border-border/60 rounded-xl cursor-pointer hover:border-accent/20 transition-all select-none"
+                    className="flex items-center gap-2.5 p-2 bg-surface-2 border border-border/60 rounded-xl cursor-pointer hover:border-accent/20 transition-all select-none"
                   >
-                    <div className={`h-4 w-4 rounded border flex items-center justify-center transition-colors ${todo.done ? "bg-accent border-accent text-[#08090c]" : "border-muted/50"}`}>
+                    <div className={`h-4 w-4 rounded border flex items-center justify-center transition-colors ${todo.done ? "bg-accent border-accent text-on-accent" : "border-muted/50"}`}>
                       {todo.done && (
                         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                           <polyline points="20 6 9 17 4 12" />
@@ -714,7 +716,7 @@ function FlowSimulator() {
               />
               <button
                 type="submit"
-                className="px-3 bg-accent text-[#08090c] font-bold rounded-lg hover:bg-accent/90"
+                className="px-3 bg-accent text-on-accent font-bold rounded-lg hover:bg-accent/90"
               >
                 +
               </button>
@@ -734,7 +736,7 @@ function FlowSimulator() {
             <div className="flex gap-3">
               <button
                 onClick={() => setIsActive(!isActive)}
-                className={`px-6 py-2 rounded-full font-semibold text-xs transition-colors ${isActive ? "bg-red-500/20 text-red-400 border border-red-500/30" : "bg-accent text-[#08090c]"}`}
+                className={`px-6 py-2 rounded-full font-semibold text-xs transition-colors ${isActive ? "bg-red-500/20 text-red-400 border border-red-500/30" : "bg-accent text-on-accent"}`}
               >
                 {isActive ? "Durdur" : "Başlat"}
               </button>
@@ -787,7 +789,7 @@ function KitapYurduSimulator() {
 
   return (
     <div className="flex h-full flex-col font-sans text-xs">
-      <div className="flex items-center justify-between border-b border-border/40 pb-2 mb-3 bg-surface/30 p-2 rounded-lg">
+      <div className="flex items-center justify-between border-b border-border/40 pb-2 mb-3 bg-surface-2 p-2 rounded-lg">
         <div>
           <h5 className="font-bold text-foreground">Arayüz Karşılaştırması</h5>
           <p className="text-[9px] text-muted">Eski Kitapyurdu tasarımı ile hazırladığım modern redesign karşılaştırması.</p>
@@ -875,7 +877,7 @@ function KitapYurduSimulator() {
               <div className="space-y-2">
                 <h6 className="font-bold text-[10px] uppercase text-muted tracking-wider">Haftanın Seçkileri</h6>
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="group border border-border bg-surface-2/20 p-2.5 rounded-xl hover:border-accent/40 cursor-pointer transition-all space-y-1.5">
+                  <div className="group border border-border bg-surface-2 p-2.5 rounded-xl hover:border-accent/40 cursor-pointer transition-all space-y-1.5">
                     <div className="relative aspect-[3/4] w-14 bg-surface rounded-lg mx-auto shadow-md overflow-hidden flex items-center justify-center font-bold text-[10px] text-accent">
                       📚
                     </div>
@@ -885,7 +887,7 @@ function KitapYurduSimulator() {
                       <p className="text-accent font-bold mt-1 text-xs">84.50 TL</p>
                     </div>
                   </div>
-                  <div className="group border border-border bg-surface-2/20 p-2.5 rounded-xl hover:border-accent/40 cursor-pointer transition-all space-y-1.5">
+                  <div className="group border border-border bg-surface-2 p-2.5 rounded-xl hover:border-accent/40 cursor-pointer transition-all space-y-1.5">
                     <div className="relative aspect-[3/4] w-14 bg-surface rounded-lg mx-auto shadow-md overflow-hidden flex items-center justify-center font-bold text-[10px] text-accent">
                       📖
                     </div>
@@ -948,12 +950,12 @@ function AiSignerSimulator() {
 
               <div className="relative border-l border-border/80 ml-3 pl-4 space-y-4 py-1.5">
                 <div className="relative">
-                  <span className="absolute -left-[21px] top-0.5 h-3.5 w-3.5 rounded-full bg-emerald-500 flex items-center justify-center text-[8px] text-[#08090c] font-bold">✓</span>
+                  <span className="absolute -left-[21px] top-0.5 h-3.5 w-3.5 rounded-full bg-emerald-500 flex items-center justify-center text-[8px] text-on-accent font-bold">✓</span>
                   <h6 className="font-semibold text-foreground">1. Hafta: Git & GitHub Temelleri</h6>
                   <p className="text-[10px] text-muted">Repoları yönetme, dal oluşturma ve PR süreçleri.</p>
                 </div>
                 <div className="relative">
-                  <span className="absolute -left-[21px] top-0.5 h-3.5 w-3.5 rounded-full bg-accent flex items-center justify-center text-[7px] text-[#08090c] font-bold">●</span>
+                  <span className="absolute -left-[21px] top-0.5 h-3.5 w-3.5 rounded-full bg-accent flex items-center justify-center text-[7px] text-on-accent font-bold">●</span>
                   <h6 className="font-semibold text-foreground text-accent">2. Hafta: Next.js & TypeScript</h6>
                   <p className="text-[10px] text-muted">Server ve Client Components kullanımı, static render alma.</p>
                   <span className="inline-block mt-1 text-[9px] bg-accent/10 border border-accent/20 text-accent px-1.5 py-0.5 rounded">Devam Ediyor</span>
@@ -979,7 +981,7 @@ function AiSignerSimulator() {
               </div>
 
               <div className="space-y-2">
-                <div className="border border-border bg-surface-2/20 p-2 rounded-lg space-y-1">
+                <div className="border border-border bg-surface-2 p-2 rounded-lg space-y-1">
                   <div className="flex justify-between items-center">
                     <strong className="text-foreground">Emre Yılmaz</strong>
                     <span className="text-[9px] text-emerald-400 font-medium">Haftalık Rapor Hazır</span>
@@ -990,7 +992,7 @@ function AiSignerSimulator() {
                   <p className="text-[9px] text-muted">Yol Haritası Tamamlanma Oranı: %65</p>
                 </div>
 
-                <div className="border border-border bg-surface-2/20 p-2 rounded-lg space-y-1">
+                <div className="border border-border bg-surface-2 p-2 rounded-lg space-y-1">
                   <div className="flex justify-between items-center">
                     <strong className="text-foreground">Zeynep Kaya</strong>
                     <span className="text-[9px] text-muted">Ödev Bekleniyor</span>
@@ -1045,7 +1047,7 @@ function AloahSimulator() {
               <div className="space-y-2">
                 <div
                   onClick={() => setShopSelected(true)}
-                  className="border border-border bg-surface-2/20 p-2.5 rounded-xl hover:border-[#e11d48]/40 cursor-pointer flex gap-3"
+                  className="border border-border bg-surface-2 p-2.5 rounded-xl hover:border-[#e11d48]/40 cursor-pointer flex gap-3"
                 >
                   <div className="h-10 w-10 bg-[#e11d48]/10 text-[#e11d48] rounded-lg flex items-center justify-center text-lg">
                     🥖
@@ -1059,7 +1061,7 @@ function AloahSimulator() {
 
                 <div
                   onClick={() => setShopSelected(true)}
-                  className="border border-border bg-surface-2/20 p-2.5 rounded-xl hover:border-[#e11d48]/40 cursor-pointer flex gap-3"
+                  className="border border-border bg-surface-2 p-2.5 rounded-xl hover:border-[#e11d48]/40 cursor-pointer flex gap-3"
                 >
                   <div className="h-10 w-10 bg-[#e11d48]/10 text-[#e11d48] rounded-lg flex items-center justify-center text-lg">
                     ☕
@@ -1131,38 +1133,56 @@ function AloahSimulator() {
 /* ==========================================================================
    GENERIC SIMULATORS (FALLBACK)
    ========================================================================== */
-function GenericMobileSimulator({ title }: { title: string }) {
+function GenericMobileSimulator({ project }: { project: Project }) {
+  if (project.image) return <ScreenshotScreen project={project} />;
   return (
     <div className="flex h-full flex-col justify-between p-4 text-center">
       <div className="space-y-2 mt-10">
         <div className="h-12 w-12 rounded-full bg-accent/15 text-accent mx-auto flex items-center justify-center text-xl font-bold">
           📱
         </div>
-        <h5 className="font-bold text-foreground capitalize">{title}</h5>
-        <p className="text-[10px] text-muted">Mobil uygulama deneyimi simüle ediliyor.</p>
+        <h5 className="font-bold text-foreground">{project.title}</h5>
+        <p className="text-[10px] text-muted">{project.tagline}</p>
       </div>
-      <div className="border border-border bg-surface-2/20 p-3 rounded-xl text-[10px] text-muted">
-        İnteraktif ekran prototipi geliştirilme aşamasındadır. Mobil arayüz yakında aktif edilecektir.
+      <div className="border border-border bg-surface-2 p-3 rounded-xl text-[10px] text-muted">
+        Bu proje için interaktif ekran prototipi henüz hazır değil.
       </div>
-      <button className="py-2 bg-accent/10 border border-accent/20 text-accent rounded-lg font-semibold text-[10px]">
-        Geri Dön
-      </button>
+      <div className="h-8" />
     </div>
   );
 }
 
-function GenericBrowserSimulator({ title }: { title: string }) {
+/* Ekran görüntüsü olan projeler için: çerçevenin içinde gerçek arayüz. */
+function ScreenshotScreen({ project }: { project: Project }) {
+  return (
+    <div className="relative h-full w-full overflow-y-auto bg-surface">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={project.image}
+        alt={`${project.title} arayüzü`}
+        className="w-full block"
+      />
+      <div className="sticky bottom-0 border-t border-border bg-surface/95 px-3 py-2 text-[10px] text-muted backdrop-blur">
+        Gerçek arayüzden ekran görüntüsü — kaydırarak gezinebilirsin.
+      </div>
+    </div>
+  );
+}
+
+function GenericBrowserSimulator({ project }: { project: Project }) {
+  if (project.image) return <ScreenshotScreen project={project} />;
   return (
     <div className="flex h-full flex-col justify-between p-6 text-center">
       <div className="space-y-2 mt-8">
         <div className="h-14 w-14 rounded-full bg-accent/15 text-accent mx-auto flex items-center justify-center text-2xl font-bold">
           💻
         </div>
-        <h5 className="font-bold text-foreground capitalize">{title}</h5>
-        <p className="text-[10px] text-muted">Web platformu prototipi simüle ediliyor.</p>
+        <h5 className="font-bold text-foreground">{project.title}</h5>
+        <p className="text-[10px] text-muted">{project.tagline}</p>
       </div>
-      <div className="border border-border bg-surface-2/20 p-4 rounded-xl text-[10px] text-muted max-w-sm mx-auto">
-        Bu projenin kaynak kodları açık kaynaklı olup, canlı önizleme ve detaylı web simülasyonu yakında eklenecektir. GitHub repo istatistiklerini sol panelden görebilirsiniz.
+      <div className="border border-border bg-surface-2 p-4 rounded-xl text-[10px] text-muted max-w-sm mx-auto">
+        Bu proje için interaktif web simülasyonu henüz hazır değil. Detaylar ve
+        bağlantılar sol panelde.
       </div>
       <div className="h-8" />
     </div>

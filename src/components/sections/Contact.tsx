@@ -147,7 +147,7 @@ function buildMethods(): Method[] {
 }
 
 const cardClass =
-  "group flex h-full items-center gap-4 rounded-2xl border border-border bg-surface/50 p-5 transition-colors";
+  "group flex h-full items-center gap-4 rounded-2xl border border-border bg-surface card-elevated p-5 transition-colors";
 const linkClass = `${cardClass} hover:border-accent/40 hover:bg-surface`;
 
 function CardBody({ method }: { method: Method }) {

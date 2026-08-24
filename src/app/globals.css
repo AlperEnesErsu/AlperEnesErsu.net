@@ -1,16 +1,27 @@
 @import "tailwindcss";
 
-/* ---------- Design tokens (dark-first, modern "tech / AI" theme) ---------- */
+/* ---------- Design tokens ----------
+   Palet, `Project/Design/` altındaki kendi tasarım işlerimden geliyor
+   (aisigner-landing + posinowa-web): kâğıt zemin, lacivert mürekkep,
+   turkuaz vurgu. Açık tema tek moddur; koyu varyant yok. */
 @theme {
-  --color-background: #08090c;
-  --color-surface: #0f1117;
-  --color-surface-2: #161a24;
-  --color-border: #232838;
-  --color-foreground: #e8eaf0;
-  --color-muted: #9aa0b4;
+  --color-background: #f8f9fc; /* paper */
+  --color-surface: #ffffff;
+  --color-surface-2: #eef1f7; /* paper-2 */
+  --color-border: #d8deea; /* line */
+  --color-border-soft: #e4e8f0;
+  --color-foreground: #141f3d; /* ink */
+  --color-muted: #5b6885;
 
-  --color-accent: #22d3ee; /* cyan */
-  --color-accent-strong: #6366f1; /* indigo */
+  --color-accent: #23356c; /* logo laciverti: butonlar, vurgular */
+  --color-accent-strong: #42b597; /* logo turkuazı: vurgu, hover */
+  --color-on-accent: #ffffff;
+
+  /* Açık temada kartlar kontrastla değil, yükseklikle ayrışır. */
+  --shadow-card: 0 1px 2px rgba(20, 31, 61, 0.04),
+    0 8px 24px -12px rgba(20, 31, 61, 0.16);
+  --shadow-card-hover: 0 2px 4px rgba(20, 31, 61, 0.06),
+    0 18px 40px -16px rgba(20, 31, 61, 0.22);
 }
 
 /* Fonts come from next/font CSS vars set on <html>.
@@ -23,7 +34,7 @@
 
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   html {
@@ -39,8 +50,8 @@
   }
 
   ::selection {
-    background-color: color-mix(in oklab, var(--color-accent) 35%, transparent);
-    color: #ffffff;
+    background-color: color-mix(in oklab, var(--color-accent-strong) 30%, transparent);
+    color: var(--color-foreground);
   }
 
   /* Scrollbar */
@@ -49,14 +60,14 @@
     height: 10px;
   }
   ::-webkit-scrollbar-track {
-    background-color: var(--color-background);
+    background-color: var(--color-surface-2);
   }
   ::-webkit-scrollbar-thumb {
-    background-color: var(--color-border);
+    background-color: #c4ccdc;
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background-color: #2e3446;
+    background-color: #aab4c9;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -76,4 +87,27 @@
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+}
+
+@utility card-elevated {
+  box-shadow: var(--shadow-card);
+}
+
+/* ---------- Cihaz ekranı (koyu ada) ----------
+   Proje simülatöründeki telefon/tarayıcı çerçeveleri gerçek uygulamaların
+   koyu arayüzünü taklit ediyor. Site açık temaya geçtiği için tokenları
+   yalnızca bu ağaçta koyu değerlere geri çeviriyoruz — içerideki
+   `text-foreground`, `bg-surface`, `border-border` vb. otomatik uyuyor. */
+.device-dark {
+  color-scheme: dark;
+  --color-background: #08090c;
+  --color-surface: #0f1117;
+  --color-surface-2: #161a24;
+  --color-border: #232838;
+  --color-border-soft: #232838;
+  --color-foreground: #e8eaf0;
+  --color-muted: #9aa0b4;
+  --color-accent: #22d3ee;
+  --color-accent-strong: #6366f1;
+  --color-on-accent: #08090c;
 }
