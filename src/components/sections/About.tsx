@@ -15,7 +15,7 @@ export function About() {
         </Reveal>
 
         <Reveal delay={0.1} className="md:col-span-2">
-          <div className="rounded-2xl border border-border bg-surface/50 p-6 backdrop-blur">
+          <div className="rounded-2xl border border-border bg-surface card-elevated p-6 backdrop-blur">
             <h3 className="font-display text-lg font-semibold text-foreground">
               Teknolojiler &amp; Beceriler
             </h3>

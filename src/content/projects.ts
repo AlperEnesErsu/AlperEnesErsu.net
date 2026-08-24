@@ -27,6 +27,36 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "aetheria-ai",
+    title: "Aetheria.ai",
+    tagline: "Kendi API anahtarınla çalışan yazılım proje fikri üreteci",
+    description: [
+      "“Ne yapsam?” sorusu, projeye başlamanın önündeki en büyük engel. Aetheria.ai seçtiğin alanda ve pazar kapsamında (ulusal / uluslararası) sıfırdan bir proje üretiyor — hazır bir listeden seçmiyor, modelin kendisi kuruyor.",
+      "Fikri beğenirsen ikinci aşamada Clean Architecture sistem mimarisini ve güvenlik tasarımını da üretiyor, Markdown raporu olarak indirilebiliyor. Sunucu yok: Gemini ya da Claude anahtarın yalnızca senin tarayıcında duruyor, istek doğrudan sağlayıcıya gidiyor. Anahtar güvenliğini (başlıkta taşıma, ayrı slot, redaksiyon, CSP kısıtı) test dosyası sabitliyor.",
+    ],
+    tech: ["JavaScript", "Gemini API", "Claude API", "CSP", "node:test", "ESLint"],
+    image: "/projects/aetheria.png",
+    repo: "AlperEnesErsu/Aetheria.ai",
+    github: "https://github.com/AlperEnesErsu/Aetheria.ai",
+    status: "open-source",
+    featured: true,
+    platforms: ["Web"],
+  },
+  {
+    slug: "posinowa-redesign",
+    title: "Posinowa Web Redesign",
+    tagline: "posinowa.com kurumsal sitesinin hareket odaklı yeniden tasarımı",
+    description: [
+      "Staj yaptığım POSINOWA'nın kurumsal sitesini, mevcut içeriği koruyarak hareket odaklı yeniden tasarladım. Metinler, projeler ve görseller posinowa.com'dan alındı; uydurma içerik yok.",
+      "Hero'daki küre d3'ün ortografik projeksiyonuyla canvas'a gerçek dünya çiziyor ve tek bir easeOutExpo eğrisiyle Ankara'da duruyor. Lenis ile yumuşak kaydırma, Reveal / SplitText / Magnetic / TiltCard gibi kendi hareket primitifleri ve derleme anında statik üretilen proje detay sayfaları var.",
+    ],
+    tech: ["Next.js 16", "TypeScript", "Tailwind v4", "Motion", "Lenis", "d3-geo"],
+    image: "/projects/posinowa.png",
+    status: "private",
+    featured: true,
+    platforms: ["Web"],
+  },
+  {
     slug: "sezai",
     title: "SezAI",
     tagline: "Yapay zekâ destekli bitki hastalığı teşhisi",
