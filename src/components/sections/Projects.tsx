@@ -11,7 +11,7 @@ export async function Projects() {
   const statsBySlug = Object.fromEntries(statsEntries);
 
   return (
-    <Section id="projects" eyebrow="02 — Projeler" title="Projeler">
+    <Section id="projects" eyebrow="03 — Projeler" title="Projeler">
       <ProjectsClient statsBySlug={statsBySlug} />
     </Section>
   );

@@ -1,6 +1,6 @@
 # AlperEnesErsu.net
 
-Kişisel portföy sitem + **Yapay Alper** (kişiliğimi yansıtan AI sohbet asistanı). Projelerim, sertifikalarım, iletişim bilgilerim ve hakkımda — modern, animasyonlu tek sayfa.
+Kişisel portföy sitem: hakkımda, deneyim, projeler, sertifikalar ve iletişim — modern, animasyonlu tek sayfa.
 
 > 🚧 Aktif geliştirme aşamasında — her gün küçük adımlarla ilerliyor.
 
@@ -9,17 +9,16 @@ Kişisel portföy sitem + **Yapay Alper** (kişiliğimi yansıtan AI sohbet asis
 - **Next.js 16** (App Router) + **TypeScript**
 - **Tailwind CSS v4**
 - **Framer Motion** — animasyonlar
-- **Claude API** — Yapay Alper sohbet asistanı
-- **Vercel** — yayın & önizleme linki
+- **Netlify** — yayın
 
 ## Bölümler
 
 - Hero / açılış animasyonu
-- Hakkımda
-- Projeler (canlı önizleme)
+- Hakkımda + odak alanı
+- Deneyim
+- Projeler (interaktif önizleme + kategori filtresi)
 - Sertifikalar
 - İletişim & sosyal medya
-- 💬 **Yapay Alper** — bakış açımı yansıtan sohbet asistanı
 
 ## Geliştirme
 

@@ -19,11 +19,10 @@ Mümkünse şunları paylaş / Please include where possible:
 - Bu depoda hiçbir API anahtarı, şifre veya gizli değer **bulunmaz** ve
   bulunmamalıdır.
 - Tüm sırlar ortam değişkenleriyle tutulur: yerelde `.env.local`, dağıtımda
-  Vercel ortam değişkenleri. `.env*` dosyaları git tarafından yok sayılır
+  Netlify ortam değişkenleri. `.env*` dosyaları git tarafından yok sayılır
   (yalnızca `.env.example` şablonu izlenir).
-- "Yapay Alper" sohbet asistanının `ANTHROPIC_API_KEY` değeri **yalnızca
-  sunucu tarafında** kullanılır; tarayıcıya asla gönderilmez ve
-  `NEXT_PUBLIC_` ön eki ile tanımlanmaz.
+- Sunucu tarafı anahtarlar tarayıcıya asla gönderilmez ve `NEXT_PUBLIC_`
+  ön eki ile tanımlanmaz.
 
 ## Güvenlik başlıkları / Security headers
 
