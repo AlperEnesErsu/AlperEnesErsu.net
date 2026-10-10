@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { profile } from "@/content/profile";
 
 const navItems = [
   { href: "#about", label: "Hakkımda" },
+  { href: "#experience", label: "Deneyim" },
   { href: "#projects", label: "Projeler" },
   { href: "#certificates", label: "Sertifikalar" },
   { href: "#contact", label: "İletişim" },
@@ -50,10 +52,12 @@ export function Navbar() {
         </ul>
 
         <a
-          href="#chat"
+          href={profile.cv}
+          target="_blank"
+          rel="noopener noreferrer"
           className="hidden h-9 items-center rounded-full bg-accent/10 px-4 text-sm font-medium text-accent ring-1 ring-inset ring-accent/30 transition-colors hover:bg-accent/20 md:inline-flex"
         >
-          Yapay Alper
+          CV
         </a>
 
         <button
@@ -111,11 +115,13 @@ export function Navbar() {
             ))}
             <li>
               <a
-                href="#chat"
+                href={profile.cv}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
                 className="block py-2.5 font-medium text-accent"
               >
-                Yapay Alper
+                CV
               </a>
             </li>
           </ul>

@@ -5,8 +5,14 @@ import { AnimatePresence, motion } from "motion/react";
 import { Reveal } from "@/components/motion/Reveal";
 import { certificates, type Certificate } from "@/content/certificates";
 
+/** İlk bakışta gösterilen kart sayısı; gerisi "Tümünü göster" ile açılır. */
+const INITIAL_COUNT = 6;
+
 export function CertificateGrid() {
   const [active, setActive] = useState<Certificate | null>(null);
+  const [showAll, setShowAll] = useState(false);
+  const visible = showAll ? certificates : certificates.slice(0, INITIAL_COUNT);
+  const hiddenCount = certificates.length - INITIAL_COUNT;
 
   // Close on Escape
   useEffect(() => {
@@ -30,8 +36,12 @@ export function CertificateGrid() {
   return (
     <>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {certificates.map((cert, i) => (
-          <Reveal key={cert.file} delay={Math.min(i * 0.05, 0.3)} className="h-full">
+        {visible.map((cert, i) => (
+          <Reveal
+            key={cert.file}
+            delay={Math.min((i % INITIAL_COUNT) * 0.05, 0.3)}
+            className="h-full"
+          >
             <button
               type="button"
               onClick={() => setActive(cert)}
@@ -77,6 +87,19 @@ export function CertificateGrid() {
           </Reveal>
         ))}
       </div>
+
+      {hiddenCount > 0 && (
+        <div className="mt-8 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setShowAll((v) => !v)}
+            aria-expanded={showAll}
+            className="inline-flex h-11 items-center gap-2 rounded-full border border-border bg-surface px-6 text-sm font-medium text-foreground card-elevated transition-colors hover:border-accent/40 hover:text-accent cursor-pointer"
+          >
+            {showAll ? "Daha az göster" : `Tümünü göster (+${hiddenCount})`}
+          </button>
+        </div>
+      )}
 
       <AnimatePresence>
         {active && (

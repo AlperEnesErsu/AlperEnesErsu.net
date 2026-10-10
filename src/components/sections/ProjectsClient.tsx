@@ -1,13 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence } from "motion/react";
+import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 import { Reveal } from "@/components/motion/Reveal";
-import { projects, type Project, type ProjectStatus } from "@/content/projects";
+import {
+  projects,
+  projectCategories,
+  type Project,
+  type ProjectCategory,
+  type ProjectStatus,
+} from "@/content/projects";
 import { type RepoStats } from "@/lib/github";
 import { ProjectSimulator } from "@/components/sections/ProjectSimulator";
 
 const statusLabel: Record<ProjectStatus, string> = {
+  live: "Canlıda",
   "demo-soon": "Canlı demo yakında",
   "open-source": "Açık kaynak",
   private: "Özel proje",
@@ -41,18 +48,30 @@ function StarIcon() {
 }
 
 function StatusBadge({ status }: { status: ProjectStatus }) {
+  const live = status === "live";
+  const pulse = live || status === "demo-soon";
   return (
     <span
       className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ring-1 ring-inset ${
-        status === "demo-soon"
-          ? "bg-accent/10 text-accent ring-accent/30"
-          : "bg-surface text-muted ring-border"
+        live
+          ? "bg-accent-strong/10 text-[#2a8a70] ring-accent-strong/40"
+          : status === "demo-soon"
+            ? "bg-accent/10 text-accent ring-accent/30"
+            : "bg-surface text-muted ring-border"
       }`}
     >
-      {status === "demo-soon" && (
+      {pulse && (
         <span className="relative flex h-1.5 w-1.5">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+          <span
+            className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 motion-reduce:animate-none ${
+              live ? "bg-accent-strong" : "bg-accent"
+            }`}
+          />
+          <span
+            className={`relative inline-flex h-1.5 w-1.5 rounded-full ${
+              live ? "bg-accent-strong" : "bg-accent"
+            }`}
+          />
         </span>
       )}
       {statusLabel[status]}
@@ -174,6 +193,18 @@ function FeaturedProject({
               </svg>
             </button>
 
+            {project.demo && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-10 items-center gap-2 rounded-full bg-accent px-5 text-sm font-medium text-on-accent transition-colors hover:bg-accent/90"
+              >
+                Canlı siteyi aç
+                <span aria-hidden>↗</span>
+              </a>
+            )}
+
             {project.github && (
               <a
                 href={project.github}
@@ -266,8 +297,17 @@ type ProjectsClientProps = {
 export function ProjectsClient({ statsBySlug }: ProjectsClientProps) {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
+  const [filter, setFilter] = useState<ProjectCategory | "Tümü">("Tümü");
+
   const featured = projects.filter((p) => p.featured);
   const archive = projects.filter((p) => !p.featured);
+  const filtered =
+    filter === "Tümü" ? archive : archive.filter((p) => p.categories.includes(filter));
+  // Yalnızca diğer projelerde karşılığı olan kategoriler çip olarak görünür.
+  const chips: (ProjectCategory | "Tümü")[] = [
+    "Tümü",
+    ...projectCategories.filter((c) => archive.some((p) => p.categories.includes(c))),
+  ];
 
   return (
     <>
@@ -285,22 +325,64 @@ export function ProjectsClient({ statsBySlug }: ProjectsClientProps) {
 
       {archive.length > 0 && (
         <>
-          <Reveal className="mb-6 mt-20">
+          <Reveal className="mb-6 mt-24 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <h3 className="font-display text-xl font-semibold text-foreground">
-              Diğer projeler
+              Diğer projeler{" "}
+              <span className="font-sans text-sm font-normal text-muted">
+                ({filtered.length})
+              </span>
             </h3>
+            <LayoutGroup>
+              <div role="group" aria-label="Projeleri filtrele" className="flex flex-wrap gap-2">
+                {chips.map((chip) => {
+                  const selected = chip === filter;
+                  return (
+                    <button
+                      key={chip}
+                      type="button"
+                      onClick={() => setFilter(chip)}
+                      aria-pressed={selected}
+                      className={`relative h-9 rounded-full px-4 text-sm font-medium transition-colors cursor-pointer ${
+                        selected
+                          ? "text-on-accent"
+                          : "text-muted ring-1 ring-inset ring-border hover:text-foreground"
+                      }`}
+                    >
+                      {selected && (
+                        <motion.span
+                          layoutId="project-filter-pill"
+                          className="absolute inset-0 rounded-full bg-accent"
+                          transition={{ type: "spring", duration: 0.35, bounce: 0.15 }}
+                        />
+                      )}
+                      <span className="relative">{chip}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </LayoutGroup>
           </Reveal>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {archive.map((project, i) => (
-              <Reveal key={project.slug} delay={Math.min(i * 0.05, 0.2)} className="h-full">
-                <ArchiveCard
-                  project={project}
-                  stats={statsBySlug[project.slug] ?? null}
-                  onSimulate={setActiveProject}
-                />
-              </Reveal>
-            ))}
-          </div>
+          <motion.div layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <AnimatePresence mode="popLayout" initial={false}>
+              {filtered.map((project) => (
+                <motion.div
+                  key={project.slug}
+                  layout
+                  initial={{ opacity: 0, scale: 0.97 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.97 }}
+                  transition={{ duration: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
+                  className="h-full"
+                >
+                  <ArchiveCard
+                    project={project}
+                    stats={statsBySlug[project.slug] ?? null}
+                    onSimulate={setActiveProject}
+                  />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
         </>
       )}
 

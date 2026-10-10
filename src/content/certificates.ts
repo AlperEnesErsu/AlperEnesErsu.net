@@ -20,6 +20,46 @@ export type Certificate = {
  */
 export const certificates: Certificate[] = [
   {
+    title: "Güvenlik Duvarına Giriş",
+    issuer: "BTK Akademi",
+    date: "3 Ağustos 2026",
+    iso: "2026-08-03",
+    image: "/certificates/guvenlik-duvarina-giris-btk.jpg",
+    file: "/certificates/guvenlik-duvarina-giris-btk.pdf",
+  },
+  {
+    title: "SIEM Temelleri",
+    issuer: "BTK Akademi",
+    date: "3 Ağustos 2026",
+    iso: "2026-08-03",
+    image: "/certificates/siem-temelleri-btk.jpg",
+    file: "/certificates/siem-temelleri-btk.pdf",
+  },
+  {
+    title: "DevOps Çözümleri (Jenkins)",
+    issuer: "BTK Akademi",
+    date: "29 Temmuz 2026",
+    iso: "2026-07-29",
+    image: "/certificates/devops-jenkins-btk.jpg",
+    file: "/certificates/devops-jenkins-btk.pdf",
+  },
+  {
+    title: "Prompt Mühendisliği",
+    issuer: "BTK Akademi",
+    date: "26 Temmuz 2026",
+    iso: "2026-07-26",
+    image: "/certificates/prompt-muhendisligi-btk.jpg",
+    file: "/certificates/prompt-muhendisligi-btk.pdf",
+  },
+  {
+    title: "Bilgi Teknolojilerine Giriş",
+    issuer: "BTK Akademi",
+    date: "19 Haziran 2026",
+    iso: "2026-06-19",
+    image: "/certificates/bilgi-teknolojilerine-giris-btk.jpg",
+    file: "/certificates/bilgi-teknolojilerine-giris-btk.pdf",
+  },
+  {
     title: "Claude Code 101",
     issuer: "Anthropic",
     date: "27 Nisan 2026",

@@ -200,7 +200,7 @@ function BrowserFrame({ project }: { project: Project }) {
 
         {/* Address Bar */}
         <div className="flex-1 rounded-md bg-background px-3 py-1 text-center font-mono text-[10px] text-muted border border-border/40 select-none">
-          https://{slug}.alperenesersu.net
+          {project.demo ?? `https://${slug}.alperenesersu.net`}
         </div>
       </div>
 

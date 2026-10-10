@@ -171,7 +171,7 @@ export function Contact() {
   const methods = buildMethods();
 
   return (
-    <Section id="contact" eyebrow="04 — İletişim" title="İletişim">
+    <Section id="contact" eyebrow="05 — İletişim" title="İletişim">
       <Reveal className="mb-8 max-w-2xl">
         <p className="text-lg leading-relaxed text-muted">
           Bir projede birlikte çalışmak, bir soru sormak ya da sadece merhaba

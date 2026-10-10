@@ -115,11 +115,23 @@ export function Hero() {
             CV
           </a>
         </motion.div>
+
+        <motion.dl
+          variants={item}
+          className="mt-12 flex items-center divide-x divide-border rounded-2xl border border-border bg-surface/70 card-elevated backdrop-blur"
+        >
+          {profile.highlights.map((h) => (
+            <div key={h.label} className="flex flex-col-reverse px-5 py-3 sm:px-7">
+              <dt className="text-xs text-muted">{h.label}</dt>
+              <dd className="font-display text-2xl font-bold text-foreground">{h.value}</dd>
+            </div>
+          ))}
+        </motion.dl>
       </motion.div>
 
       {/* Scroll cue */}
       <motion.a
-        href="#projects"
+        href="#about"
         aria-label="Aşağı kaydır"
         className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted transition-colors hover:text-foreground"
         initial={{ opacity: 0 }}

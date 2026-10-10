@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s — Alper Enes Ersü",
   },
   description:
-    "Alper Enes Ersü'nün kişisel portföyü: projeler, sertifikalar ve 'Yapay Alper' sohbet asistanı.",
+    "Alper Enes Ersü'nün kişisel portföyü: deneyim, projeler ve sertifikalar.",
 };
 
 export default function RootLayout({
@@ -43,7 +43,8 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
-        <Analytics />
+        {/* Vercel Analytics yalnızca Vercel'de çalışır; Netlify'da script 404 verir. */}
+        {process.env.VERCEL && <Analytics />}
       </body>
     </html>
   );
