@@ -7,7 +7,7 @@ export type ProjectStatus =
   | "concept";
 
 /** Projeler bölümündeki filtre çipleri */
-export type ProjectCategory = "Yapay Zekâ" | "Web" | "Mobil" | "Güvenlik" | "Masaüstü";
+export type ProjectCategory = "Yapay Zekâ" | "Web" | "Mobil" | "Güvenlik" | "Masaüstü" | "Oyun";
 
 export const projectCategories: ProjectCategory[] = [
   "Yapay Zekâ",
@@ -15,6 +15,7 @@ export const projectCategories: ProjectCategory[] = [
   "Mobil",
   "Güvenlik",
   "Masaüstü",
+  "Oyun",
 ];
 
 export type Project = {
@@ -32,13 +33,36 @@ export type Project = {
   github?: string;
   /** Canlı demo linki (deploy edilince dolacak) */
   demo?: string;
+  /** Tarayıcıda oynanan oyun: "Canlı siteyi aç" yerine "Oyna" düğmesi */
+  play?: string;
   status: ProjectStatus;
   featured: boolean;
   platforms?: string[];
   categories: ProjectCategory[];
 };
 
+/** Bu sitede barınan oyunun adresi (public/oyunlar/, Fuse-Fall deposundaki `npm run portfolio` ile gelir). */
+export const FUSE_AND_FALL_URL = "/oyunlar/fuse-and-fall/index.html";
+
 export const projects: Project[] = [
+  {
+    slug: "fuse-and-fall",
+    title: "Fuse & Fall",
+    tagline: "Fizik tabanlı, çevrimdışı oynanan kontrollü yıkım bulmacası",
+    description: [
+      "Her görevde bir yapı var: şarjları doğru yere koyup fitili ateşliyorsun, yapı hedefleri de alarak çökmeli, korunan binalar ayakta kalmalı. Dokuz şehir, 90+ görev, her gün yeni bir günlük görev; kendi görevini kurup kodla ya da bağlantıyla arkadaşına meydan okuyabiliyorsun.",
+      "Oyun kuralları saf TypeScript çekirdekte, fizik Matter.js'in arkasında bir port. Her görev kayıtlı bir çözümle testte yeniden oynanıyor; denge eşikleri, yakın ıskalarla ölçülen kazanma oranları ve Android/iOS profillerinde uçtan uca testler her PR'da CI'da koşuyor. Tarayıcıda kurulumsuz açılıyor, ilk açılıştan sonra internetsiz çalışıyor; Android sürümü Capacitor ile.",
+    ],
+    tech: ["TypeScript", "Matter.js", "Canvas 2D", "Vite", "Capacitor", "Vitest", "Playwright", "PWA"],
+    image: "/projects/fuse-and-fall.jpg",
+    repo: "AlperEnesErsu/Fuse-Fall",
+    github: "https://github.com/AlperEnesErsu/Fuse-Fall",
+    play: FUSE_AND_FALL_URL,
+    status: "live",
+    featured: true,
+    platforms: ["Web", "Android"],
+    categories: ["Oyun", "Web", "Mobil"],
+  },
   {
     slug: "gms-toptan",
     title: "GMS Toptan",

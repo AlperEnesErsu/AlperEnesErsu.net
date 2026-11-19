@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Oyunların derlenmiş dosyaları kendi depolarında denetlenir (Fuse-Fall: npm run check).
+    "public/oyunlar/**",
   ]),
 ]);
 

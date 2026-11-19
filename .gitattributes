@@ -1,0 +1,2 @@
+# Oyunların derlenmiş dosyaları olduğu gibi kalır: satır sonları değiştirilmez.
+public/oyunlar/** -text

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Formlar</title>
+  </head>
+  <body>
+    <!--
+      Netlify Forms bu sayfadan formları tanır; gönderiler de buraya POST edilir
+      (src/components/sections/GameRequestForm.tsx). Alan adları orada kullanılanlarla aynı.
+    -->
+    <form name="oyun-istek" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="oyun-istek" />
+      <input name="bot-field" />
+      <input name="oyun" />
+      <select name="tur">
+        <option value="oneri">Öneri</option>
+        <option value="hata">Hata bildirimi</option>
+        <option value="gorev">Görev / şehir fikri</option>
+        <option value="diger">Diğer</option>
+      </select>
+      <textarea name="mesaj"></textarea>
+      <input type="checkbox" name="haber" value="evet" />
+      <input type="email" name="email" />
+    </form>
+  </body>
+</html>

@@ -8,3 +8,26 @@
 [build.environment]
   NODE_VERSION = "22"
   NEXT_TELEMETRY_DISABLED = "1"
+
+# Oyunlar: sayfa ve service worker hiç bayat sunulmaz (oyuncunun hangi sürümü aldığını
+# onlar belirler); assets/ altındaki dosyaların adında içerik özeti var, bir yıl kalır.
+[[headers]]
+  for = "/oyunlar/*/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/oyunlar/*/index.html"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/oyunlar/*/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Kısa adres: /fuse-and-fall → oyun.
+[[redirects]]
+  from = "/fuse-and-fall"
+  to = "/oyunlar/fuse-and-fall/index.html"
+  status = 302

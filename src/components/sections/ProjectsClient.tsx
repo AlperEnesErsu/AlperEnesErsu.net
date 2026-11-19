@@ -193,6 +193,16 @@ function FeaturedProject({
               </svg>
             </button>
 
+            {project.play && (
+              <a
+                href={project.play}
+                className="inline-flex h-10 items-center gap-2 rounded-full bg-accent px-5 text-sm font-medium text-on-accent transition-colors hover:bg-accent/90"
+              >
+                Oyna
+                <span aria-hidden>▶</span>
+              </a>
+            )}
+
             {project.demo && (
               <a
                 href={project.demo}
