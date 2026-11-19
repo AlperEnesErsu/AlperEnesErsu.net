@@ -200,13 +200,21 @@ function BrowserFrame({ project }: { project: Project }) {
 
         {/* Address Bar */}
         <div className="flex-1 rounded-md bg-background px-3 py-1 text-center font-mono text-[10px] text-muted border border-border/40 select-none">
-          {project.demo ?? `https://${slug}.alperenesersu.net`}
+          {project.play ? `alperenesersu.netlify.app${project.play}` : (project.demo ?? `https://${slug}.alperenesersu.net`)}
         </div>
       </div>
 
       {/* Browser Canvas Screen */}
       <div className="flex-1 bg-[#08090c] overflow-hidden p-4 relative flex flex-col text-foreground text-xs select-none">
-        {slug === "scrapemind" ? (
+        {project.play ? (
+          // Simülasyon değil, oyunun kendisi: aynı siteden, çerçeveye izin verilen yoldan.
+          <iframe
+            src={project.play}
+            title={`${project.title} — oyna`}
+            className="absolute inset-0 h-full w-full border-0"
+            allow="fullscreen"
+          />
+        ) : slug === "scrapemind" ? (
           <ScrapeMindSimulator />
         ) : slug === "flow" ? (
           <FlowSimulator />

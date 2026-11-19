@@ -8,3 +8,39 @@
 [build.environment]
   NODE_VERSION = "22"
   NEXT_TELEMETRY_DISABLED = "1"
+
+# Oyunlar: sayfa ve service worker hiç bayat sunulmaz (oyuncunun hangi sürümü aldığını
+# onlar belirler); assets/ altındaki dosyaların adında içerik özeti var, bir yıl kalır.
+[[headers]]
+  for = "/oyunlar/*/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/oyunlar/*/index.html"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/oyunlar/*/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Oyun dosyaları public/ altında durağan sunulur; Netlify'da next.config.ts'teki
+# headers() bunlara ulaşmaz. Aynı politikalar burada: tek fark, oyunu bu sitenin
+# kendisinin çerçeveye alabilmesi (Projeler'deki "Deneyimle").
+[[headers]]
+  for = "/oyunlar/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; base-uri 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'; upgrade-insecure-requests"
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), browsing-topics=()"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+
+# Kısa adres: /fuse-and-fall → oyun.
+[[redirects]]
+  from = "/fuse-and-fall"
+  to = "/oyunlar/fuse-and-fall/index.html"
+  status = 302

@@ -41,9 +41,23 @@ const securityHeaders = [
   },
 ];
 
+/**
+ * Oyunlar (`public/oyunlar/`): aynı politikalar, tek fark sitenin kendisinin onları
+ * çerçeveye alabilmesi (Projeler'deki "Deneyimle" penceresi oyunu canlı gösterir).
+ * Next'te aynı anahtarı ayarlayan sonraki kural öncekini ezer.
+ */
+const gameCsp = csp.replace(`frame-ancestors 'none'`, `frame-ancestors 'self'`);
+const gameHeaders = [
+  { key: "Content-Security-Policy", value: gameCsp },
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
+];
+
 const nextConfig: NextConfig = {
   async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
+    return [
+      { source: "/:path*", headers: securityHeaders },
+      { source: "/oyunlar/:path*", headers: gameHeaders },
+    ];
   },
 };
 
