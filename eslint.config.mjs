@@ -14,6 +14,7 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Oyunların derlenmiş dosyaları kendi depolarında denetlenir (Fuse-Fall: npm run check).
     "public/oyunlar/**",
+    "public/siberokul/**",
   ]),
 ]);
 

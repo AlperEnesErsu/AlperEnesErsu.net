@@ -7,6 +7,7 @@ const navItems = [
   { href: "#about", label: "Hakkımda" },
   { href: "#experience", label: "Deneyim" },
   { href: "#projects", label: "Projeler" },
+  { href: "#akademik", label: "Akademik" },
   { href: "#games", label: "Oyunlar" },
   { href: "#certificates", label: "Sertifikalar" },
   { href: "#contact", label: "İletişim" },

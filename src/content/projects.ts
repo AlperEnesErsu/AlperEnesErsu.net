@@ -7,7 +7,7 @@ export type ProjectStatus =
   | "concept";
 
 /** Projeler bölümündeki filtre çipleri */
-export type ProjectCategory = "Yapay Zekâ" | "Web" | "Mobil" | "Güvenlik" | "Masaüstü" | "Oyun";
+export type ProjectCategory = "Yapay Zekâ" | "Web" | "Mobil" | "Güvenlik" | "Masaüstü" | "Oyun" | "Akademik";
 
 export const projectCategories: ProjectCategory[] = [
   "Yapay Zekâ",
@@ -17,6 +17,9 @@ export const projectCategories: ProjectCategory[] = [
   "Masaüstü",
   "Oyun",
 ];
+
+/** "Akademik" kategorisindeki projeler Projeler bölümünde kendi grubunda, ayrı başlık altında durur. */
+export const ACADEMIC: ProjectCategory = "Akademik";
 
 export type Project = {
   slug: string;
@@ -35,11 +38,21 @@ export type Project = {
   demo?: string;
   /** Tarayıcıda oynanan oyun: "Canlı siteyi aç" yerine "Oyna" düğmesi */
   play?: string;
+  /** `play` düğmesinin yazısı (varsayılan "Oyna") */
+  playLabel?: string;
+  /**
+   * Bu sitede barınan ve ilerlemeyi tarayıcıda (localStorage) tutan proje: kartta ziyaretçinin kendi
+   * ilerlemesi gösterilir. Aynı alan adında olduğu için okunabilir; sunucuya hiçbir şey gitmez.
+   */
+  progress?: { storageKey: string; totalLessons: number };
   status: ProjectStatus;
   featured: boolean;
   platforms?: string[];
   categories: ProjectCategory[];
 };
+
+/** Bu sitede barınan SiberOkul'un adresi (public/siberokul/, SiberOkul deposundaki `npm run portfolio` ile gelir). */
+export const SIBEROKUL_URL = "/siberokul/";
 
 /** Bu sitede barınan oyunun adresi (public/oyunlar/, Fuse-Fall deposundaki `npm run portfolio` ile gelir). */
 export const FUSE_AND_FALL_URL = "/oyunlar/fuse-and-fall/index.html";
@@ -52,6 +65,26 @@ export const FUSE_AND_FALL_URL = "/oyunlar/fuse-and-fall/index.html";
  * Posinowa 1, AISigner 1 PR · Hastane 39, LogSentry 35, KitapYurdu 10, Aloah 5 commit.
  */
 export const projects: Project[] = [
+  {
+    slug: "siberokul",
+    title: "SiberOkul",
+    tagline: "Sıfırdan DevSecOps mühendisliğine: kendi siber güvenlik okulum",
+    description: [
+      "Linux'tan buluta 8 bölge, 97 ders ve her bölgenin sonunda bir sınav. Her gün tek bir oturum açıyorum: unutmak üzere olduğum sorular aralıklı tekrarla geri geliyor, ardından günün dersi (kavram, analoji, terminal görevi, gerçek bir güvenlik olayı), kısa bir “Efsane mi?” kartı ve özet. Telefonda okunacak şekilde tasarlandı; terminal görevlerini bilgisayarda WSL2 + Ubuntu'da yapıyorum.",
+      "Statik bir Astro sitesi: sunucu, veritabanı ve hesap yok, ilerleme tarayıcıda tutuluyor. Aralıklı tekrar, seri, oturum ve sınav mantığı testli saf fonksiyonlarda; içerik şeması ve denetleyicisi bozuk bir dersi yayına çıkmadan yakalıyor. Derslerdeki komutlar gerçek bir Ubuntu'da çalıştırılıp doğrulandı; alınan her karar sitenin “Atölye” bölümünde ne/neden/bedel olarak yazılı.",
+    ],
+    tech: ["Astro", "TypeScript", "Vitest", "Aralıklı tekrar", "WSL2 + Ubuntu", "GitHub Actions"],
+    image: "/projects/siberokul.svg",
+    repo: "AlperEnesErsu/SiberOkul",
+    github: "https://github.com/AlperEnesErsu/SiberOkul",
+    play: SIBEROKUL_URL,
+    playLabel: "Okula git",
+    progress: { storageKey: "siberokul.ilerleme", totalLessons: 97 },
+    status: "live",
+    featured: false,
+    platforms: ["Web", "Telefon"],
+    categories: ["Akademik", "Güvenlik"],
+  },
   {
     slug: "undustit",
     title: "Undustit",
