@@ -57,7 +57,24 @@ const nextConfig: NextConfig = {
     return [
       { source: "/:path*", headers: securityHeaders },
       { source: "/oyunlar/:path*", headers: gameHeaders },
+      // SiberOkul (public/siberokul/) da "Deneyimle" penceresinde çerçevelenir.
+      { source: "/siberokul/:path*", headers: gameHeaders },
     ];
+  },
+  /**
+   * SiberOkul statik bir site: her sayfa bir klasörün index.html'i (/siberokul/dersler/linux-001/).
+   * Netlify bunları CDN'den kendisi sunar; bu kural yalnız `next dev`/`next start` içindir. afterFiles
+   * olduğu için önce gerçek dosyalar (CSS/JS) eşleşir, kalan klasör adresleri index.html'e gider.
+   */
+  async rewrites() {
+    return {
+      beforeFiles: [],
+      afterFiles: [
+        { source: "/siberokul", destination: "/siberokul/index.html" },
+        { source: "/siberokul/:path*", destination: "/siberokul/:path*/index.html" },
+      ],
+      fallback: [],
+    };
   },
 };
 

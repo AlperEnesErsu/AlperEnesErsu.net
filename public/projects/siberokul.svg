@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="SiberOkul: Linux'tan buluta sekiz bölgelik öğrenme yolu">
+  <defs>
+    <linearGradient id="zemin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4f5fa"/>
+      <stop offset="1" stop-color="#ecebfd"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#zemin)"/>
+  <g font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+    <rect x="96" y="96" width="84" height="84" rx="20" fill="#4c3fd1"/>
+    <text x="138" y="152" text-anchor="middle" font-family="ui-monospace, Consolas, monospace" font-size="38" font-weight="800" fill="#fff">&gt;_</text>
+    <text x="204" y="156" font-size="64" font-weight="800" fill="#171923">SiberOkul</text>
+    <text x="98" y="236" font-size="34" fill="#545b6e">Sıfırdan DevSecOps mühendisliğine · 8 bölge · 97 ders</text>
+  </g>
+  <path d="M170 420 C 420 330, 560 560, 800 470 S 1180 360, 1430 470 M1430 470 C 1500 560, 1300 700, 1100 690 S 700 780, 470 760 S 200 820, 170 880" fill="none" stroke="#c9cbe0" stroke-width="10" stroke-dasharray="4 22" stroke-linecap="round"/>
+  <g font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="26" font-weight="700" fill="#171923" text-anchor="middle">
+    <g transform="translate(170 420)"><circle r="62" fill="#fff" stroke="#f08c00" stroke-width="8"/><text y="16" font-size="54">🐧</text><text y="104">Linux</text></g>
+    <g transform="translate(560 470)"><circle r="62" fill="#fff" stroke="#1c7ed6" stroke-width="8"/><text y="16" font-size="54">🌐</text><text y="104">Ağ</text></g>
+    <g transform="translate(960 430)"><circle r="62" fill="#fff" stroke="#7048e8" stroke-width="8"/><text y="16" font-size="54">🛡️</text><text y="104">Temeller</text></g>
+    <g transform="translate(1370 450)"><circle r="62" fill="#fff" stroke="#0ca678" stroke-width="8"/><text y="16" font-size="54">⚙️</text><text y="104">DevOps</text></g>
+    <g transform="translate(1180 690)"><circle r="62" fill="#fff" stroke="#e64980" stroke-width="8"/><text y="16" font-size="54">🧩</text><text y="104">AppSec</text></g>
+    <g transform="translate(830 740)"><circle r="62" fill="#fff" stroke="#f59f00" stroke-width="8"/><text y="16" font-size="54">🏭</text><text y="104">Pipeline</text></g>
+    <g transform="translate(480 760)"><circle r="62" fill="#fff" stroke="#3bc9db" stroke-width="8"/><text y="16" font-size="54">📦</text><text y="104">Container</text></g>
+    <g transform="translate(170 870)"><circle r="62" fill="#fff" stroke="#748ffc" stroke-width="8"/><text y="16" font-size="54">☁️</text><text y="104" dy="0">Bulut</text></g>
+  </g>
+</svg>

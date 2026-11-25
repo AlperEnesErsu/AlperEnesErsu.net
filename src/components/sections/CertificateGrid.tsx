@@ -35,7 +35,7 @@ export function CertificateGrid() {
 
   return (
     <>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
         {visible.map((cert, i) => (
           <Reveal
             key={cert.file}
@@ -60,12 +60,12 @@ export function CertificateGrid() {
                 </span>
               </div>
 
-              <div className="flex flex-1 flex-col p-5">
-                <h3 className="font-display text-base font-semibold leading-snug text-foreground">
+              <div className="flex flex-1 flex-col p-3 sm:p-5">
+                <h3 className="font-display text-sm font-semibold leading-snug text-foreground sm:text-base">
                   {cert.title}
                 </h3>
-                <p className="mt-1 text-sm text-muted">{cert.issuer}</p>
-                <span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-medium text-accent">
+                <p className="mt-1 text-xs text-muted sm:text-sm">{cert.issuer}</p>
+                <span className="mt-auto inline-flex items-center gap-1 pt-3 text-xs font-medium text-accent sm:pt-4 sm:text-sm">
                   Görüntüle
                   <svg
                     width="14"

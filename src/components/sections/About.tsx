@@ -10,7 +10,7 @@ export function About() {
       <div className="grid gap-10 md:grid-cols-5 md:gap-12">
         <Reveal className="space-y-5 md:col-span-3">
           {profile.about.paragraphs.map((paragraph, i) => (
-            <p key={i} className="text-lg leading-relaxed text-muted">
+            <p key={i} className="text-base leading-relaxed text-muted sm:text-lg">
               {paragraph}
             </p>
           ))}

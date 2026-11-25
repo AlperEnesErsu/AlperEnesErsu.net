@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 import { Reveal } from "@/components/motion/Reveal";
+import { ProjectProgress } from "@/components/sections/ProjectProgress";
 import {
+  ACADEMIC,
   projects,
   projectCategories,
   type Project,
@@ -125,9 +127,12 @@ function FeaturedProject({
   flip: boolean;
   onSimulate: (project: Project) => void;
 }) {
+  // Telefonda kart kısa kalsın: ilk paragraf birkaç satırla, kalanı "Devamını oku" ile açılır.
+  const [acik, setAcik] = useState(false);
+  const fazlaEtiket = Math.max(0, project.tech.length - 4);
   return (
     <Reveal>
-      <article className="group grid items-center gap-8 md:grid-cols-2 md:gap-12">
+      <article className="group grid items-center gap-5 md:grid-cols-2 md:gap-12">
         <div
           className={`relative aspect-[16/10] overflow-hidden rounded-2xl border border-border bg-surface card-elevated ${
             flip ? "md:order-2" : ""
@@ -154,23 +159,49 @@ function FeaturedProject({
           </h3>
           <p className="mt-1 text-base font-medium text-accent">{project.tagline}</p>
 
+          {project.progress && project.play && (
+            <ProjectProgress
+              storageKey={project.progress.storageKey}
+              total={project.progress.totalLessons}
+              href={project.play}
+            />
+          )}
+
           <div className="mt-4 space-y-3">
             {project.description.map((paragraph, i) => (
-              <p key={i} className="leading-relaxed text-muted">
+              <p
+                key={i}
+                className={`leading-relaxed text-muted ${
+                  acik ? "" : i === 0 ? "line-clamp-4 md:line-clamp-none" : "hidden md:block"
+                }`}
+              >
                 {paragraph}
               </p>
             ))}
+            <button
+              type="button"
+              onClick={() => setAcik((v) => !v)}
+              aria-expanded={acik}
+              className="text-sm font-medium text-accent underline-offset-4 hover:underline md:hidden cursor-pointer"
+            >
+              {acik ? "Daha az göster" : "Devamını oku"}
+            </button>
           </div>
 
           <ul className="mt-5 flex flex-wrap gap-2">
-            {project.tech.map((t) => (
+            {project.tech.map((t, i) => (
               <li
                 key={t}
-                className="rounded-full border border-border bg-background px-3 py-1 text-xs text-muted"
+                className={`rounded-full border border-border bg-background px-3 py-1 text-xs text-muted ${
+                  !acik && i >= 4 ? "hidden md:list-item" : ""
+                }`}
               >
                 {t}
               </li>
             ))}
+            {!acik && fazlaEtiket > 0 && (
+              <li className="rounded-full px-2 py-1 text-xs text-muted md:hidden">+{fazlaEtiket}</li>
+            )}
           </ul>
 
           <div className="mt-6 flex flex-wrap items-center gap-4">
@@ -198,8 +229,8 @@ function FeaturedProject({
                 href={project.play}
                 className="inline-flex h-10 items-center gap-2 rounded-full bg-accent px-5 text-sm font-medium text-on-accent transition-colors hover:bg-accent/90"
               >
-                Oyna
-                <span aria-hidden>▶</span>
+                {project.playLabel ?? "Oyna"}
+                <span aria-hidden>{project.playLabel ? "→" : "▶"}</span>
               </a>
             )}
 
@@ -309,8 +340,13 @@ export function ProjectsClient({ statsBySlug }: ProjectsClientProps) {
 
   const [filter, setFilter] = useState<ProjectCategory | "Tümü">("Tümü");
 
-  const featured = projects.filter((p) => p.featured);
-  const archive = projects.filter((p) => !p.featured);
+  // Telefonda "Diğer projeler" listesinin ilk TELEFON_ILK kartı görünür, kalanı düğmeyle açılır.
+  const TELEFON_ILK = 6;
+  const [hepsi, setHepsi] = useState(false);
+
+  const academic = projects.filter((p) => p.categories.includes(ACADEMIC));
+  const featured = projects.filter((p) => p.featured && !p.categories.includes(ACADEMIC));
+  const archive = projects.filter((p) => !p.featured && !p.categories.includes(ACADEMIC));
   const filtered =
     filter === "Tümü" ? archive : archive.filter((p) => p.categories.includes(filter));
   // Yalnızca diğer projelerde karşılığı olan kategoriler çip olarak görünür.
@@ -321,7 +357,31 @@ export function ProjectsClient({ statsBySlug }: ProjectsClientProps) {
 
   return (
     <>
-      <div className="space-y-20">
+      {academic.length > 0 && (
+        <div id="akademik" className="mb-20 scroll-mt-24 md:mb-28">
+          <Reveal className="mb-8">
+            <h3 className="font-display text-xl font-semibold text-foreground sm:text-2xl">
+              Akademik
+            </h3>
+            <p className="mt-1 text-muted">
+              Kendi kendime öğrenme yolculuğum: müfredatını kendim kurduğum, her gün çalıştığım projeler.
+            </p>
+          </Reveal>
+          <div className="space-y-14 md:space-y-20">
+            {academic.map((project, i) => (
+              <FeaturedProject
+                key={project.slug}
+                project={project}
+                stats={statsBySlug[project.slug] ?? null}
+                flip={i % 2 === 1}
+                onSimulate={setActiveProject}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div className="space-y-14 md:space-y-20">
         {featured.map((project, i) => (
           <FeaturedProject
             key={project.slug}
@@ -332,6 +392,7 @@ export function ProjectsClient({ statsBySlug }: ProjectsClientProps) {
           />
         ))}
       </div>
+
 
       {archive.length > 0 && (
         <>
@@ -374,7 +435,7 @@ export function ProjectsClient({ statsBySlug }: ProjectsClientProps) {
           </Reveal>
           <motion.div layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <AnimatePresence mode="popLayout" initial={false}>
-              {filtered.map((project) => (
+              {filtered.map((project, i) => (
                 <motion.div
                   key={project.slug}
                   layout
@@ -382,7 +443,7 @@ export function ProjectsClient({ statsBySlug }: ProjectsClientProps) {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.97 }}
                   transition={{ duration: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
-                  className="h-full"
+                  className={`h-full ${!hepsi && i >= TELEFON_ILK ? "hidden sm:block" : ""}`}
                 >
                   <ArchiveCard
                     project={project}
@@ -393,6 +454,17 @@ export function ProjectsClient({ statsBySlug }: ProjectsClientProps) {
               ))}
             </AnimatePresence>
           </motion.div>
+          {!hepsi && filtered.length > TELEFON_ILK && (
+            <div className="mt-6 text-center sm:hidden">
+              <button
+                type="button"
+                onClick={() => setHepsi(true)}
+                className="inline-flex h-11 items-center rounded-full border border-border px-6 text-sm font-medium text-foreground transition-colors hover:bg-surface cursor-pointer"
+              >
+                Tümünü göster ({filtered.length})
+              </button>
+            </div>
+          )}
         </>
       )}
 

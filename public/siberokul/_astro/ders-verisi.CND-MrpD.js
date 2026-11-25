@@ -1,0 +1,1 @@
+function e(){let e=document.getElementById(`ders-listesi`);return e?.textContent?JSON.parse(e.textContent):{dersler:[],donemler:[],kartlar:[],sinavDonemleri:[],sinavSoruIdleri:[]}}function t(e){let t={};for(let n of e)(t[n.donem]??=[]).push(n.kimlik);return t}export{t as n,e as t};
