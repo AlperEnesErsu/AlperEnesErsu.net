@@ -1,1 +1,0 @@
-import{c as e,s as t}from"./depo.DBlQxTcl.js";function n(n,r){let i=new Map;for(let t of new Set(n)){let n=e(t);i.set(n,(i.get(n)??0)+1)}let a=e(r),o=i.get(a)??0,s=+(o>=5);for(let e=t(a,-7);(i.get(e)??0)>=5;e=t(e,-7))s++;return{seriHafta:s,buHaftaGun:o}}export{n as t};

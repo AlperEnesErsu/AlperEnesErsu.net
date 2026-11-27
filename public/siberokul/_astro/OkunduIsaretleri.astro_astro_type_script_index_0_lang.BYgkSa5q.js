@@ -1,0 +1,1 @@
+import{t as e}from"./depo.CBBFOHBw.js";var t=new Set(e().okunanKartlar??[]),n=[...document.querySelectorAll(`[data-kart]`)],r=0;for(let e of n){if(!t.has(e.dataset.kart))continue;r++,e.classList.add(`okundu`);let n=e.querySelector(`.kart-durum`);n&&(n.textContent=`✓ Okundu`)}var i=document.getElementById(`okunan-ozet`);i&&n.length&&(i.textContent=`${r}/${n.length} okundu`);
