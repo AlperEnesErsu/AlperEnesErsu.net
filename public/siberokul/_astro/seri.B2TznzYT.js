@@ -1,0 +1,1 @@
+import{n as e,r as t}from"./tarih.B0Kg7C19.js";function n(n,r){let i=new Map;for(let e of new Set(n)){let n=t(e);i.set(n,(i.get(n)??0)+1)}let a=t(r),o=i.get(a)??0,s=+(o>=5);for(let t=e(a,-7);(i.get(t)??0)>=5;t=e(t,-7))s++;return{seriHafta:s,buHaftaGun:o}}export{n as t};
